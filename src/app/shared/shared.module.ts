@@ -8,6 +8,7 @@ import { InputComponent } from './components/input/input.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { FirstLetterPipe } from './pipes/first-letter.pipe';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     InputComponent,
     NotFoundPageComponent,
     FormComponent,
+    FirstLetterPipe,
   ],
   imports: [
     CommonModule,

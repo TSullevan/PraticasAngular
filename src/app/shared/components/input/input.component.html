@@ -1,3 +1,4 @@
 <label>{{model.title}}</label><span *ngIf="model.required">*</span>
-<input class="form-control" [placeholder]="model.placeHolder" [(ngModel)]="model.value">
-{{model.value}}
+<input class="form-control" [placeholder]="model.placeHolder" [(ngModel)]="model.value" [style]="model.style" (blur)= "model.blurValidation()" (keyup)= "model.mask()">
+
+{{model.value | firstLetter}}

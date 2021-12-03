@@ -1,23 +1,57 @@
+import { MaskService } from "../../services/mask.service";
+import { ValidationService } from "../../services/validation.service";
+
 export class InputModel {
     value: string = '';
     title: string = '';
     style: string = '';
     placeHolder: string = '';
-    maxLength: string = '20';
+    maxLength: number = 20;
     required: boolean = false;
-    mask: Function = function () {};
-    blurValidation: Function = function () {};
-  static asEmail: any;
+    mask: Function = this.maskMethodWithValue;
+    blurValidation: Function = this.validationMethodWithValue;
+    hasValidValue: boolean = true;
+    validationMethod: Function = function (text:string) {return true;}
+
+    private validationService: ValidationService = new ValidationService;
+    private maskService: MaskService = new MaskService;
+    private maskMethod: Function = function (text:string) {return text;}
+
+    private maskMethodWithValue(): void {
+        this.value = this.maskMethod(this.value);
+    }
+
+    private validationMethodWithValue(): void {
+        let isValid: boolean = this.validationMethod(this.value);
+        this.removeValidationBorder();
+        this.hasValidValue = true;
+        if(!isValid){
+            this.putValidationBorder();
+            this.hasValidValue = false;
+        }
+    }
+
+    public removeValidationBorder(): void {
+        this.style = '';
+    }
+
+    public putValidationBorder(): void {
+        this.style = 'border-color: red';
+    }
 
     public asEmail(): InputModel {
         this.title = 'Email';
         this.placeHolder = 'Digite seu e-mail';
+        this.validationMethod = this.validationService.validateEmail.bind(this.validationService);
         return this;
     }
 
     public asTelephone(): InputModel {
         this.title = 'Telefone';
         this.placeHolder = 'Digite seu telefone';
+        this.maskMethod = this.maskService.cellPhoneMask.bind(this.maskService)
+        this.validationMethod = this.validationService.validateMaskedCellPhone.bind(this.validationService);
+        this.maxLength = 16;
         return this;
     }
 
@@ -30,5 +64,21 @@ export class InputModel {
         this.title = 'Nome';
         this.placeHolder = 'Digite seu nome...';
         return this;
+    }
+
+    public setRequiredValidationBorder(): boolean {
+        this.removeValidationBorder();
+        if (this.isRequired()) {
+            this.putValidationBorder();
+            return true;
+        }
+        return false;
+    }
+
+    public isRequired(): boolean {
+        if (this.required && (this.value === undefined || this.value == null || this.value == '')){
+            return true;
+        }
+        return false;
     }
 }
