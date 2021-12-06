@@ -9,6 +9,8 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { FirstLetterPipe } from './pipes/first-letter.pipe';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AbbreviatePipe } from './pipes/abbreviate.pipe'
 
 
 @NgModule({
@@ -20,11 +22,13 @@ import { FirstLetterPipe } from './pipes/first-letter.pipe';
     NotFoundPageComponent,
     FormComponent,
     FirstLetterPipe,
+    AbbreviatePipe,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    HttpClientModule
     
   ],
   exports: [
@@ -32,6 +36,7 @@ import { FirstLetterPipe } from './pipes/first-letter.pipe';
     CardComponent,
     InputComponent,
     FormComponent
-  ]
+  ],
+  providers: [HttpClient]
 })
 export class SharedModule { }

@@ -1,3 +1,4 @@
+import { UserModel } from "src/app/register/models/user.model";
 import { InputModel } from "../input/input.model";
 
 export class FormModel{
@@ -10,6 +11,13 @@ export class FormModel{
                 .addCol(new ColModel().asTelephone().asRequired().setCol(3)))
             .addRow(new RowModel()
                 .addCol(new ColModel().asEmail()))
+        return this;
+    }
+
+    public asRegister(): FormModel {
+        this
+            .addRow(new RowModel()
+                .addCol(new ColModel().asRegisterName().setCol(4)))
         return this;
     }
 
@@ -31,6 +39,7 @@ export class RowModel{
 export class ColModel{
     class: string = 'col';
     input: InputModel = new InputModel();
+    register: UserModel = new UserModel();
 
     public setInput(input: InputModel): ColModel {
         this.input = input;
@@ -39,6 +48,11 @@ export class ColModel{
 
     public asName(): ColModel {
         this.input = this.input.asName();
+        return this;
+    }
+
+    public asRegisterName(): ColModel {
+        this.register = this.register.asName();
         return this;
     }
 

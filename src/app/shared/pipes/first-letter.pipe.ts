@@ -9,7 +9,7 @@ export class FirstLetterPipe implements PipeTransform {
     if (text == '' || text == null || text === undefined){
       return text;
     }
-    return text[0];;
+    return text[0];
   }
 
 }
