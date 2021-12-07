@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { subscribeOn } from 'rxjs';
 import { FormModel } from 'src/app/shared/components/form/form.model';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { UserModel } from '../../models/user.model';
@@ -46,15 +47,17 @@ export class RegisterPageComponent implements OnInit {
 
   public updateMethod(): void {
     let user: UserModel = new UserModel();
-    let id = 5;
-    user.name = "Everaldo Macedo";
+    user.name = "Everaldo";
     user.cpf = "444666777221";
     user.telephone1 = "19 9 9221 9832";
     user.telephone2 = "19 9 8773 3382";
-    this.httpService.put<UserModel>('user', user, id)
-    .subscribe(
-      (user: UserModel) => this.user = user
-    );
+    this.httpService.update<UserModel>('user', user)
+    .subscribe();
   }
 
+  public clearMethod(): void {
+    document.getElementById('main')?.querySelectorAll("p").forEach((e) => {
+        e.innerHTML = "";
+    }); 
+  }
 }

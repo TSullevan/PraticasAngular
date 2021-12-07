@@ -8,9 +8,13 @@
 
 <button (click)="updateMethod()">Atualizar</button>
 
-<p>{{user.name}}</p>
-<p>{{user.cpf}}</p>
-<p>{{user.telephone1}}</p>
-<p>{{user.telephone2}}</p>
+<button (click)="clearMethod()">Clear</button>
+
+<div id="main">
+    <p id="userName">{{user.name}}</p>
+    <p>{{user.cpf}}</p>
+    <p>{{user.telephone1}}</p>
+    <p>{{user.telephone2}}</p>
+</div>
 
 

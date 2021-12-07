@@ -14,7 +14,7 @@ const desktopRoutes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomePageComponent,
+        component: HomePageComponent
       },
       {
         path: 'contato',

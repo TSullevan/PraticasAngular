@@ -22,7 +22,11 @@ export class HttpService {
     return this.httpClient.post<Model>(environment.baseApiUrl + route, model);
   }
 
-  public put<Model>(route: string, model: Model, id: number): Observable<Model> {
-    return this.httpClient.put<Model>(environment.baseApiUrl + route, model + '/' + id);
+  public update<Model>(route: string, model: Model): Observable<Model> {
+    return this.httpClient.put<Model>(environment.baseApiUrl + route, model);
   }
+  public clear<Model>(route: string, model: Model): Observable<Model> {
+    return this.httpClient.get<Model>(environment.baseApiUrl + route, model);
+  }
+
 }
