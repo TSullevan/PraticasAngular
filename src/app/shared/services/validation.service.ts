@@ -18,6 +18,8 @@ export class ValidationService {
     return cellphone.length == 16;
   }
 
+
+
   public validateEmail(email: string): boolean{
     if (this.isEmptyNullOrUndefined(email)) {
       return true;

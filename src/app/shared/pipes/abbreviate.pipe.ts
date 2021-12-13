@@ -5,13 +5,37 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class AbbreviatePipe implements PipeTransform {
 
-  transform(text: string): string {
-      var splitText =  text.trim().split(" ");
-        if (splitText.length >= 1 && (splitText.length < 2)) {
-          return (splitText[0] + " " + splitText[1].charAt(0) + ". " + splitText[2] + " " + splitText[3]);
-        }if (splitText.length > 2){
-          return (splitText[0] + " " + splitText[1].charAt(0) + ". " + splitText[2].charAt(0) + ". " + splitText[3] + " "  + splitText[4]);
+  transform(fullName: string): string {
+      if(!fullName) {
+        return fullName;
+      }
+
+      let splitName: string[] = fullName.trim().split(" ");
+      let firstName: string = '';
+      let middleName: string = '';
+      let lastName: string = '';
+
+      if (splitName.length > 0) {
+        firstName = splitName[0];
+      }
+      if (splitName.length > 1) {
+        lastName = ' ' + splitName[splitName.length - 1];
+      }
+      if (splitName.length > 2) {
+        for (let i = 1; i < splitName.length - 1; i++) {
+          if (splitName[i].length > 2) {
+            middleName = ' ' + splitName[i][0] + '.';
+          } else if (splitName[i].length > 0) {
+            middleName += ' ' + splitName[i];
+          }        
         }
-        return text;
-    }
+      }
+
+      return firstName + middleName + lastName;
+
+  }
+
 }
+
+
+

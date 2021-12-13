@@ -30,5 +30,26 @@ export class MaskService {
     return telephone;
   }
 
+  public birthMask(text: string): string {
+    let numbers: string = text.replace(/\D/g,"");
+    let date = '';
+
+    if (numbers.length > 0) {
+      date = '' + numbers;
+    }
+    if (numbers.length > 2) {
+      date = date.insertAt('/', 2);
+    }
+    if (numbers.length > 4) {
+      date = date.insertAt('/', 5);
+    }
+    if (numbers.length >= 9) {
+      date = date.slice(0, 10);
+    }
+    
+
+    return date;
+  }
+
   constructor() { }
 }

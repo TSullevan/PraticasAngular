@@ -8,13 +8,21 @@
 
 <button (click)="updateMethod()">Atualizar</button>
 
-<button (click)="clearMethod()">Clear</button>
+<button (click)="cleanMethod()">Clear</button>
 
-<div id="main">
-    <p id="userName">{{user.name}}</p>
-    <p>{{user.cpf}}</p>
-    <p>{{user.telephone1}}</p>
-    <p>{{user.telephone2}}</p>
-</div>
+<p>{{user.name}}</p>
+<p>{{user.cpf}}</p>
+<p>{{user.telephone1}}</p>
+<p>{{user.telephone2}}</p>
+
+
+
+<section>
+    <div class="container">
+        <h3>Cadastre seus dados para receber novas informações sobre o Everaldo!</h3>
+        <app-form [form]="form"></app-form>
+    </div>    
+</section>
+
 
 

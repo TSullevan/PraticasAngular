@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
+
   constructor(private httpClient: HttpClient) { }
 
   public delete(route: string, id: number): Observable<boolean> {
@@ -18,8 +19,9 @@ export class HttpService {
     return this.httpClient.get<Model>(environment.baseApiUrl + route + '/' + id);
   }
 
-  public post<Model>(route: string,  model: Model): Observable<Model> {
-    return this.httpClient.post<Model>(environment.baseApiUrl + route, model);
+  public post(route: string,  model: FormData): Observable<any> {
+    debugger
+    return this.httpClient.post(environment.baseApiUrl + route, model);
   }
 
   public update<Model>(route: string, model: Model): Observable<Model> {

@@ -2,7 +2,15 @@ import { UserModel } from "src/app/register/models/user.model";
 import { InputModel } from "../input/input.model";
 
 export class FormModel{
-    rows: Array<RowModel> = new Array<RowModel>();  
+    rows: Array<RowModel> = new Array<RowModel>(); 
+    class: string = 'form'; 
+    send: Function = this.sendMethodWithRoute;
+    sendMethod: Function = function (element:object) { alert('sendMethod não implementado para envio de ' + element) };
+    sendRoute: string = '';
+
+    private sendMethodWithRoute(model: FormData) {
+        return this.sendMethod(this.sendRoute, model);
+    }
 
     public asContact(): FormModel {
         this
@@ -24,6 +32,73 @@ export class FormModel{
     public addRow(newRow:RowModel): FormModel{
         this.rows.push(newRow);
         return this;
+    }
+
+    public setClass(newClass: string): FormModel {
+        this.class = newClass;
+        return this;
+    }
+
+    public cleanFields(): void {
+        this.rows.forEach(row =>
+            row.cols.forEach(col => {
+                col.input.value = '';
+            })
+        )
+    }
+
+    public checkDirtyFields(): boolean {
+        let hasDirtyFields: boolean = false;
+        this.rows.forEach(row =>
+            row.cols.forEach(col => {
+                let value: string | File = col.input.value;
+                let dirtyField: boolean = value != null && value != undefined && value != '';
+                if (dirtyField) {
+                    hasDirtyFields = confirm('Há campos preenchidos veve, deseja mesmo seguir em frente?');
+                    return;    
+                }
+            })
+        );
+        return hasDirtyFields;
+    }
+
+    public setSendMethod(sendMethod: Function): FormModel {
+        debugger
+        this.sendMethod = sendMethod;
+        return this;
+    }
+
+    public setSendRoute(sendRoute: string): FormModel {
+        this.sendRoute = sendRoute;
+        return this;
+    }
+
+    public getObject(): object {
+        debugger
+        let inputs: Array<ObjectModel> = new Array<ObjectModel>();
+
+        this.rows.forEach(row =>
+            row.cols.forEach(col =>
+                inputs.push(new ObjectModel(col.input.propertyName, col.input.value || ''))
+            )
+        );
+        let formData: object = this.arrayToObject(inputs);
+        return formData;
+    }
+
+    public objectToFormData(dataObject: object): FormData {
+        let formData: FormData = new FormData();
+        for (let key in dataObject) {
+            formData.append(key, (<any>dataObject)[key]);
+        }
+        return formData;
+    }
+
+    private arrayToObject(models: Array<ObjectModel>): object {
+        return models.reduce((acumulator: object, model: ObjectModel) => {
+            const { propertyName, ...modelRest } = model;
+            return { ...acumulator, [propertyName]: modelRest.propertyValue };
+        }, {});
     }
 }
 
@@ -50,7 +125,7 @@ export class ColModel{
         this.input = this.input.asName();
         return this;
     }
-
+        
     public asRegisterName(): ColModel {
         this.register = this.register.asName();
         return this;
@@ -58,6 +133,11 @@ export class ColModel{
 
     public asTelephone(): ColModel {
         this.input = this.input.asTelephone();
+        return this;
+    }
+
+    public asBirth(): ColModel {
+        this.input = this.input.asBirth();
         return this;
     }
 
@@ -74,5 +154,16 @@ export class ColModel{
     public setCol(colSize: number): ColModel {
         this.class = 'col-' + colSize;
         return this;
+    }
+}
+
+export class ObjectModel {
+    
+    propertyName: string = '';
+    propertyValue: string |File = '';
+
+    constructor(propertyName: string, propertyValue: string | File) {
+        this.propertyName = propertyName;
+        this.propertyValue = propertyValue;
     }
 }

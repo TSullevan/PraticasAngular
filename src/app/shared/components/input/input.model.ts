@@ -4,7 +4,9 @@ import { ValidationService } from "../../services/validation.service";
 export class InputModel {
     value: string = '';
     title: string = '';
+    propertyName: string = '';
     style: string = '';
+    birth: string = '';
     placeHolder: string = '';
     maxLength: number = 20;
     required: boolean = false;
@@ -42,6 +44,7 @@ export class InputModel {
     public asEmail(): InputModel {
         this.title = 'Email';
         this.placeHolder = 'Digite seu e-mail';
+        this.propertyName = 'Email'
         this.validationMethod = this.validationService.validateEmail.bind(this.validationService);
         return this;
     }
@@ -50,8 +53,17 @@ export class InputModel {
         this.title = 'Telefone';
         this.placeHolder = 'Digite seu telefone';
         this.maskMethod = this.maskService.cellPhoneMask.bind(this.maskService)
+        this.propertyName = 'Telephone';
         this.validationMethod = this.validationService.validateMaskedCellPhone.bind(this.validationService);
         this.maxLength = 16;
+        return this;
+    }
+
+    public asBirth(): InputModel {
+        this.title = 'Data de Nascimento';
+        this.placeHolder = 'Digite seu Nascimento...';
+        this.propertyName = 'Birth';
+        this.maskMethod = this.maskService.birthMask.bind(this.maskService);
         return this;
     }
 
@@ -62,6 +74,7 @@ export class InputModel {
 
     public asName(): InputModel {
         this.title = 'Nome';
+        this.propertyName = 'Name';
         this.placeHolder = 'Digite seu nome...';
         return this;
     }
