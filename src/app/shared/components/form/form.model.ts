@@ -54,7 +54,7 @@ export class FormModel{
                 let value: string | File = col.input.value;
                 let dirtyField: boolean = value != null && value != undefined && value != '';
                 if (dirtyField) {
-                    hasDirtyFields = confirm('Há campos preenchidos veve, deseja mesmo seguir em frente?');
+                    hasDirtyFields = true;
                     return;    
                 }
             })
@@ -63,7 +63,6 @@ export class FormModel{
     }
 
     public setSendMethod(sendMethod: Function): FormModel {
-        debugger
         this.sendMethod = sendMethod;
         return this;
     }
@@ -74,7 +73,6 @@ export class FormModel{
     }
 
     public getObject(): object {
-        debugger
         let inputs: Array<ObjectModel> = new Array<ObjectModel>();
 
         this.rows.forEach(row =>
@@ -83,14 +81,6 @@ export class FormModel{
             )
         );
         let formData: object = this.arrayToObject(inputs);
-        return formData;
-    }
-
-    public objectToFormData(dataObject: object): FormData {
-        let formData: FormData = new FormData();
-        for (let key in dataObject) {
-            formData.append(key, (<any>dataObject)[key]);
-        }
         return formData;
     }
 

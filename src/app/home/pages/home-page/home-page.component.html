@@ -1,4 +1,19 @@
-
-<div *ngFor="let card of cards">
-<app-card *ngIf="card.title != 'Vodka Corbanezi'" [model]="card"></app-card>
-</div>
+<div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="bar-chart">Análise p/ Ano</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="doughnut-chart">Vendas Trimestrais</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="radar-chart">Projeções Futuras</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="pie-chart">Vendas p/ Produtos</a>
+      </li>
+    </ul>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+  </div>

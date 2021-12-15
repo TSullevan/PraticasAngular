@@ -10,7 +10,12 @@ import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { FirstLetterPipe } from './pipes/first-letter.pipe';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AbbreviatePipe } from './pipes/abbreviate.pipe'
+import { AbbreviatePipe } from './pipes/abbreviate.pipe';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { NgChartsModule } from 'ng2-charts';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 
 @NgModule({
@@ -23,19 +28,25 @@ import { AbbreviatePipe } from './pipes/abbreviate.pipe'
     FormComponent,
     FirstLetterPipe,
     AbbreviatePipe,
+    BarChartComponent,
+    DoughnutChartComponent,
+    RadarChartComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     SharedRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
     
   ],
   exports: [
     MasterPageComponent,
     CardComponent,
     InputComponent,
-    FormComponent
+    FormComponent,
+    BarChartComponent
   ],
   providers: [HttpClient]
 })

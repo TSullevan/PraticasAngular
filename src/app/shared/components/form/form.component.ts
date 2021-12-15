@@ -15,7 +15,6 @@ export class FormComponent implements OnInit {
   constructor() { }
 
   public sendButton(): void {
-    debugger
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }

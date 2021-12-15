@@ -20,7 +20,6 @@ export class HttpService {
   }
 
   public post(route: string,  model: FormData): Observable<any> {
-    debugger
     return this.httpClient.post(environment.baseApiUrl + route, model);
   }
 
