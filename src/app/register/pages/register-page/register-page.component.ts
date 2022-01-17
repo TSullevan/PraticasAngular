@@ -48,6 +48,12 @@ export class RegisterPageComponent extends BaseFormPageModel {
       );
   }
 
+  public getAllMethod(): void {
+    this.httpService.getall<UserModel>('user').subscribe(
+      (user: UserModel) => this.user = user
+    );
+  }
+
   public createMethod(): void {
     let user: UserModel = new UserModel();
     user.name = "Enzo";
@@ -71,3 +77,4 @@ export class RegisterPageComponent extends BaseFormPageModel {
     this.user = new UserModel();
   }
 }
+ 

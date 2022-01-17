@@ -19,6 +19,10 @@ export class HttpService {
     return this.httpClient.get<Model>(environment.baseApiUrl + route + '/' + id);
   }
 
+  public getall<Model>(route: string): Observable<Model> {
+    return this.httpClient.get<Model>(environment.baseApiUrl + route);
+  }
+
   public post(route: string,  model: FormData): Observable<any> {
     return this.httpClient.post(environment.baseApiUrl + route, model);
   }
