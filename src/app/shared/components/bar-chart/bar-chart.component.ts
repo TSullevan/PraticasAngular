@@ -56,6 +56,8 @@ export class BarChartComponent implements OnInit {
   public barChartType:  ChartType = 'bar';
   public barChartLegend = true;
 
+   celso: string = 'bar';
+
   public barChartData: ChartData<'bar'> = {
     labels: [ UserModel.name, '2007', '2008', '2009', '2010', '2011', '2012' ],
     datasets: [

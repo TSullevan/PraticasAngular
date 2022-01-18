@@ -16,7 +16,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { MainChartComponent } from './components/main-chart/main-chart.component';
+import { GenericChartComponent } from './generic-chart/generic-chart.component';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { MainChartComponent } from './components/main-chart/main-chart.component
     DoughnutChartComponent,
     RadarChartComponent,
     PieChartComponent,
-    MainChartComponent
+    GenericChartComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +49,7 @@ import { MainChartComponent } from './components/main-chart/main-chart.component
     InputComponent,
     FormComponent,
     BarChartComponent,
-    MainChartComponent
+    GenericChartComponent
   ],
   providers: [HttpClient]
 })
