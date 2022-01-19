@@ -40,7 +40,7 @@ import { GenericChartComponent } from './generic-chart/generic-chart.component';
     FormsModule,
     SharedRoutingModule,
     HttpClientModule,
-    NgChartsModule
+    NgChartsModule,
     
   ],
   exports: [

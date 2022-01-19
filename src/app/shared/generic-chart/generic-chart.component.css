@@ -1,0 +1,6 @@
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(13,110,253);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(179, 179, 179);
+}

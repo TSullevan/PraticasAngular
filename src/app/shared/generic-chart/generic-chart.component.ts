@@ -14,13 +14,13 @@ export class GenericChartComponent implements OnInit {
 
   public genericChartType = GenericChartType;
 
-  public chartData: ChartData<'pie'>;
+  public chartData?: ChartData<'pie'>;
 
   constructor() {
-    this.chartData = this.model.genericChartData.getChartData();
   }
-
+  
   ngOnInit(): void {
+    this.chartData = this.model.genericChartData.getChartData();
   }
 
 }
