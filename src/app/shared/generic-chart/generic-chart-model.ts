@@ -5,6 +5,7 @@ export class GenericChartModel {
     // chartOptions: string = '';
     chartLegend: boolean = true;
     type: any = ''
+    title: string = '';
     // chartPlugins: string = '';
 
     constructor(type: string) {
@@ -18,8 +19,8 @@ export class GenericChartModel {
         ];
     }
 
-    public setLegend(): GenericChartModel {
-        this.chartLegend
+    public setTitle(title: string): GenericChartModel {
+        this.title = title;
         return this;
     }
 }

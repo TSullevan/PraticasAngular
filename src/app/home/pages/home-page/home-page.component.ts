@@ -10,36 +10,44 @@ import { GenericChartType } from 'src/app/shared/generic-chart/generic-chart-typ
 })
 export class HomePageComponent implements OnInit {
 
-  public cards = new  Array<CardModel>(new CardModel);
+  public cards = new Array<CardModel>(new CardModel);
 
-  public barChart: GenericChartModel = new GenericChartModel(GenericChartType.BAR);
-  public radarChart: GenericChartModel = new GenericChartModel(GenericChartType.RADAR);
-  public pieChart: GenericChartModel = new GenericChartModel(GenericChartType.PIE);
-  public doughnutChart: GenericChartModel = new GenericChartModel(GenericChartType.DOUGHNUT);
-  public lineChart: GenericChartModel = new GenericChartModel(GenericChartType.LINE);
-  public polarAreaChart: GenericChartModel = new GenericChartModel(GenericChartType.POLAR);
-  public bubbleChart: GenericChartModel = new GenericChartModel(GenericChartType.BUBBLE);
-  public scatterChart: GenericChartModel = new GenericChartModel(GenericChartType.SCATTER);
+  public genericCharts: Array<GenericChartModel> =
+    [
+      new GenericChartModel(GenericChartType.BAR),
+      new GenericChartModel(GenericChartType.RADAR),
+      new GenericChartModel(GenericChartType.PIE),
+      new GenericChartModel(GenericChartType.DOUGHNUT),
+      new GenericChartModel(GenericChartType.LINE),
+      new GenericChartModel(GenericChartType.POLAR),
+      new GenericChartModel(GenericChartType.BUBBLE),
+      new GenericChartModel(GenericChartType.SCATTER)
+    ];
 
   constructor() {
 
-  let glassesCard = new CardModel(); 
+    this.genericCharts.forEach(
+      chart => {
+        chart.setTitle(chart.type)
+      }
+    );
+    let glassesCard = new CardModel();
 
-  glassesCard.title = 'Óculos de Sol'
-  glassesCard.source = 'assets/images/sun glasses.jpg'
-  glassesCard.price = '299,99'
+    glassesCard.title = 'Óculos de Sol'
+    glassesCard.source = 'assets/images/sun glasses.jpg'
+    glassesCard.price = '299,99'
 
-  this.cards.push(glassesCard);
+    this.cards.push(glassesCard);
 
-  let vodkaCard = new CardModel(); 
+    let vodkaCard = new CardModel();
 
-  vodkaCard.title = 'Óculos de Sol'
-  vodkaCard.source = 'assets/images/vodka.jpg'
-  vodkaCard.price = '299,99'
+    vodkaCard.title = 'Óculos de Sol'
+    vodkaCard.source = 'assets/images/vodka.jpg'
+    vodkaCard.price = '299,99'
 
-  this.cards.push(vodkaCard);
+    this.cards.push(vodkaCard);
 
-  } 
+  }
 
   ngOnInit(): void {
   }
