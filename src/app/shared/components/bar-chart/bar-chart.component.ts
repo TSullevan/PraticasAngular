@@ -18,23 +18,27 @@ export class BarChartComponent implements OnInit {
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
-      x: {},
+      // x: {
+      //   max: 10,
+      //   min: 190
+      // },
       y: {
-        min: 10
+        max: 0,
+        min: 70
       }
     },
     plugins: {
       legend: {
-        display: true,
+        display: false,
       },
       datalabels: {
-        anchor: 'end',
+        anchor: 'center',
         align: 'end'
       },
       tooltip: {
         callbacks: {
           label: function() {
-            let label = "everaldo" + " em "  + this.title;
+            let label = "informação" + " em "  + this.title;
 
             return label;
         }
@@ -59,7 +63,7 @@ export class BarChartComponent implements OnInit {
    celso: string = 'bar';
 
   public barChartData: ChartData<'bar'> = {
-    labels: [ UserModel.name, '2007', '2008', '2009', '2010', '2011', '2012' ],
+    labels: [ '2006', '2007', '2008', '2009', '2010', '2011', '2012' ],
     datasets: [
       { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Series A', backgroundColor: "rgba(53, 60, 189, 0.6)" },
       { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Series B', backgroundColor: "rgba(186, 186, 52, 0.6)" },

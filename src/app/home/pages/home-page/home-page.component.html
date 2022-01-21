@@ -1,9 +1,9 @@
-<!-- <div class="container">
+<div class="container">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" routerLink="bar-chart">Análise p/ Ano</a>
+        <a class="nav-link" routerLink="bar-chart">Chart não genérico</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" routerLink="doughnut-chart">Vendas Trimestrais</a>
       </li>
       <li class="nav-item">
@@ -11,12 +11,15 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="pie-chart">Vendas p/ Produtos</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >sair</a>
       </li>
     </ul>
     <div>
         <router-outlet></router-outlet>
     </div>
-  </div> -->
+  </div>
 
   <app-generic-chart [model]="genericCharts[0]"></app-generic-chart>
   <app-generic-chart [model]="radarChart"></app-generic-chart>

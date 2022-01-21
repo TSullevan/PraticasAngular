@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { GenericChartModel } from './generic-chart-model';
 import { GenericChartType } from './generic-chart-type.enum';
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-generic-chart',
@@ -16,11 +17,19 @@ export class GenericChartComponent implements OnInit {
 
   public chartData?: ChartData<'pie'>;
 
+  public chartOptions?: ChartConfiguration['options'];
+
+  public barChartPlugins = [
+    DataLabelsPlugin,
+  ];
+
   constructor() {
   }
   
   ngOnInit(): void {
     this.chartData = this.model.genericChartData.getChartData();
+
+    this.chartOptions = this.model.genericChartOptions.getChartOptions();
   }
 
 }
