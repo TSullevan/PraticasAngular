@@ -1,11 +1,13 @@
-import { ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpec } from "chart.js";
-import { DataLabelOptModel } from "./datalabelsopt.models";
-import { LayoutModel } from "./layout-model";
-import { PluginsModel } from "./plugins-model";
+import { ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpec, Plugin } from "chart.js";
+import { LayoutModel } from "./models/layout-model";
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
 
 export class GenericChartModel {
     genericChartData: GenericChartData = new GenericChartData();
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
+    enableExactDataPlugin: boolean = false;
+
     // chartOptions: string = '';
     chartLegend: boolean = true;
     type: any = ''
@@ -14,6 +16,20 @@ export class GenericChartModel {
 
     constructor(type: string) {
         this.type = type;
+    }
+
+    public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartModel {
+        this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
+        this.enableExactDataPlugin = true;
+        return this;
+    }
+
+    public getChartPlugins(): Array<Plugin> {
+
+        if(this.enableExactDataPlugin) {
+            return [DataLabelsPlugin];
+        }
+        return new Array();
     }
 
     public setScaleOptionsX(min?: number, max?: number): GenericChartModel {
@@ -51,14 +67,9 @@ export class GenericChartModel {
         return this;
     }
 
-    public setDataLabels(anchor: any, align: any): GenericChartModel {
+    private setDataPluginPosition(anchor: string, align: string): GenericChartModel {
         this.genericChartOptions.setAnchor(anchor);
         this.genericChartOptions.setAlign(align);
-        return this;
-    }
-
-    public setPlugins(anchor: any, align: any): GenericChartModel {
-        this.setDataLabels(anchor, align);
         return this;
     }
 

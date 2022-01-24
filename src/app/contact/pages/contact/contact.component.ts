@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CardModel } from 'src/app/shared/components/card/card.model';
+import { Component, OnInit } from '@angular/core';
 import { FormModel } from 'src/app/shared/components/form/form.model';
 import { InputModel } from 'src/app/shared/components/input/input.model';
 

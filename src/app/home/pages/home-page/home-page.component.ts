@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CardModel } from 'src/app/shared/components/card/card.model';
-import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart-model';
-import { GenericChartType } from 'src/app/shared/generic-chart/generic-chart-type.enum';
-import { ScaleAxeModel } from 'src/app/shared/generic-chart/point.model';
-import plugin from 'chartjs-plugin-datalabels';
+import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart.model';
+import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
+import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
 
 @Component({
   selector: 'app-home-page',
@@ -37,8 +36,8 @@ export class HomePageComponent implements OnInit {
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
-        .setLayout(50)
-        .setPlugins('end', 'end');
+      .setLayout(50)
+        .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END);
     }
 
     this.radarChart = (

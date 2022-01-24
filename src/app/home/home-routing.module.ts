@@ -6,7 +6,6 @@ import { BarChartComponent } from '../shared/components/bar-chart/bar-chart.comp
 import { DoughnutChartComponent } from '../shared/components/doughnut-chart/doughnut-chart.component';
 import { PieChartComponent } from '../shared/components/pie-chart/pie-chart.component';
 import { RadarChartComponent } from '../shared/components/radar-chart/radar-chart.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
   {
