@@ -36,11 +36,30 @@ export class BarChartComponent implements OnInit {
         align: 'end'
       },
       tooltip: {
+        usePointStyle: false,
         callbacks: {
           label: function() {
             let label = "informação" + " em "  + this.title;
 
             return label;
+        },
+        labelColor: function () {
+          return {
+          borderColor: 'yellow',
+          backgroundColor: 'blue',
+          borderWidth: 2,
+          borderDash: [2, 2],
+          borderRadius: 2
+          };
+        },
+        labelTextColor: function(): string {
+          return 'red';
+        },
+        labelPointStyle: function() {
+          return {
+            pointStyle: 'star',
+            rotation: 0
+          }
         }
         },
       }

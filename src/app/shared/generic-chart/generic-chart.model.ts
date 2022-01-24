@@ -18,6 +18,11 @@ export class GenericChartModel {
         this.type = type;
     }
 
+    public setLabelTextColor(cssColor: string): GenericChartModel {
+        this.genericChartOptions.setLabelTextColor(cssColor);
+        return this;
+    }
+
     public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartModel {
         this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
         this.enableExactDataPlugin = true;
@@ -26,7 +31,7 @@ export class GenericChartModel {
 
     public getChartPlugins(): Array<Plugin> {
 
-        if(this.enableExactDataPlugin) {
+        if (this.enableExactDataPlugin) {
             return [DataLabelsPlugin];
         }
         return new Array();
@@ -93,9 +98,35 @@ export class GenericChartData {
 
 export class GenericChartOptions {
     responsive: boolean = false;
-    plugins: {datalabels: {anchor: any, align: any} } = { datalabels: {anchor: '', align: ''} };
-    layout: LayoutModel = {padding: undefined};
+    plugins: {
+        datalabels: { anchor: any, align: any },
+        tooltip: {
+            callbacks: {
+                label: any,
+                labelColor: any
+                labelTextColor: any,
+                labelPointStyle: any
+            }
+        }
+    } = {
+            datalabels: { anchor: '', align: '' },
+            tooltip: {
+                callbacks: {
+                    label: undefined,
+                    labelColor: undefined,
+                    labelTextColor: undefined,
+                    labelPointStyle: undefined
+                }
+            }
+        };
+
+    layout: LayoutModel = { padding: undefined };
     scales: { x: { min?: number, max?: number }, y: { min?: number, max?: number } } = { x: { min: undefined, max: undefined }, y: { min: undefined, max: undefined } };
+
+    public setLabelTextColor(labelTextColor: string): GenericChartOptions {
+        this.plugins.tooltip.callbacks.labelTextColor = function() { return labelTextColor };
+        return this;
+    }
 
     public setResponsive(responsive: boolean): GenericChartOptions {
         this.responsive = responsive;
