@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardModel } from 'src/app/shared/components/card/card.model';
-import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart.model';
+import { GenericChartModel, GenericChartOptions } from 'src/app/shared/generic-chart/generic-chart.model';
 import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
 import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
 
@@ -38,7 +38,8 @@ export class HomePageComponent implements OnInit {
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
       .setLayout(50)
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
-        .setLabelTextColor('green');
+        .setLabelTextColor('rgb(255, 187, 0)')
+        .setCallbacksLabel('Evecedo Maraldo');
     }
 
     this.radarChart = (

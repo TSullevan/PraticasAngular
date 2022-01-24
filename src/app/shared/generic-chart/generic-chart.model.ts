@@ -23,6 +23,11 @@ export class GenericChartModel {
         return this;
     }
 
+    public setCallbacksLabel(callbacksLabel: string): GenericChartModel {
+        this.genericChartOptions.setCallbacksLabel(callbacksLabel);
+        return this;
+    }
+
     public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartModel {
         this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
         this.enableExactDataPlugin = true;
@@ -125,6 +130,11 @@ export class GenericChartOptions {
 
     public setLabelTextColor(labelTextColor: string): GenericChartOptions {
         this.plugins.tooltip.callbacks.labelTextColor = function() { return labelTextColor };
+        return this;
+    }
+
+    public setCallbacksLabel(callbacksLabel: string) {
+        this.plugins.tooltip.callbacks.label = function() {return callbacksLabel};
         return this;
     }
 
