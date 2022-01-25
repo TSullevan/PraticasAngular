@@ -42,6 +42,11 @@ export class GenericChartModel {
         return new Array();
     }
 
+    public setLabelColor(backgroundColor: string, borderColor:string): GenericChartModel {
+        this.genericChartOptions.setLabelColor(backgroundColor, borderColor)
+        return this;
+    }
+
     public setScaleOptionsX(min?: number, max?: number): GenericChartModel {
         this.genericChartOptions.setScaleAxeX(min, max);
         return this;
@@ -106,9 +111,10 @@ export class GenericChartOptions {
     plugins: {
         datalabels: { anchor: any, align: any },
         tooltip: {
+            usePointStyle: boolean,
             callbacks: {
                 label: any,
-                labelColor: any
+                labelColor: any,
                 labelTextColor: any,
                 labelPointStyle: any
             }
@@ -116,6 +122,7 @@ export class GenericChartOptions {
     } = {
             datalabels: { anchor: '', align: '' },
             tooltip: {
+                usePointStyle: false,
                 callbacks: {
                     label: undefined,
                     labelColor: undefined,
@@ -135,6 +142,16 @@ export class GenericChartOptions {
 
     public setCallbacksLabel(callbacksLabel: string) {
         this.plugins.tooltip.callbacks.label = function() {return callbacksLabel};
+        return this;
+    }
+
+    public setLabelColor(backgroundColor: string, borderColor: string): GenericChartOptions {
+        this.plugins.tooltip.callbacks.labelColor = function () {
+            return {
+            borderColor: borderColor,
+            backgroundColor: backgroundColor
+            }
+        };
         return this;
     }
 

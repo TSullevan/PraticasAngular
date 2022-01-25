@@ -39,7 +39,8 @@ export class HomePageComponent implements OnInit {
       .setLayout(50)
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         .setLabelTextColor('rgb(255, 187, 0)')
-        .setCallbacksLabel('Evecedo Maraldo');
+        .setCallbacksLabel('Evecedo Maraldo')
+        .setLabelColor('red', 'green');
     }
 
     this.radarChart = (
