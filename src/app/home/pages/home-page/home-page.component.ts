@@ -22,7 +22,17 @@ export class HomePageComponent implements OnInit {
 
   constructor() {
 
-    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.BAR)));
+    let config = new GenericChartConfig(GenericChartType.BAR)
+      .setPadding(200)
+      .setTitle('Everaldo');
+
+    let data = '';
+    let label = '';
+
+    let chart = new GenericChartModel(config);
+
+    this.genericCharts.push(chart);
+
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.DOUGHNUT)));
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.LINE)));
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.POLAR)));
@@ -31,7 +41,7 @@ export class HomePageComponent implements OnInit {
 
     for (let chart of this.genericCharts) {
       chart
-        .setTitle(chart.genericChartConfig.type)
+        .setTitle(chart.chartType)
         .setData([
           { data: [65, 59, 80, 81, 56, 55, 40], label: 'Everaldo Macedo', backgroundColor: "rgba(53, 60, 189, 0.6)" },
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
@@ -40,7 +50,6 @@ export class HomePageComponent implements OnInit {
         
         .setScaleOptionsY(10, 120)
         .isResponsive()
-        .setLayout(50)
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         .setLabelTextColor('rgb(255, 187, 0)')
         .setCallbacksLabel('Evecedo Maraldo')
