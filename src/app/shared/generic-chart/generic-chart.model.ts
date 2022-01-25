@@ -17,10 +17,12 @@ export class GenericChartModel {
     chartType: any;
     // chartPlugins: string = '';
 
-    constructor(chartConfig: GenericChartConfig) {
+    constructor(chartConfig: GenericChartConfig) { 
         this.setLayout(chartConfig.layout.padding);
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
+        this.isResponsive();
+        this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label)
     }
 
     public setLabelTextColor(cssColor: string): GenericChartModel {

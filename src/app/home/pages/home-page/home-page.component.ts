@@ -23,8 +23,10 @@ export class HomePageComponent implements OnInit {
   constructor() {
 
     let config = new GenericChartConfig(GenericChartType.BAR)
-      .setPadding(200)
-      .setTitle('Everaldo');
+      .setPadding(50)
+      .setTitle('Everaldo')
+      .isResponsive()
+      .showCallbacksLabel('Chicote, Algema');
 
     let data = '';
     let label = '';
@@ -41,7 +43,7 @@ export class HomePageComponent implements OnInit {
 
     for (let chart of this.genericCharts) {
       chart
-        .setTitle(chart.chartType)
+        // .setTitle(chart.chartType)
         .setData([
           { data: [65, 59, 80, 81, 56, 55, 40], label: 'Everaldo Macedo', backgroundColor: "rgba(53, 60, 189, 0.6)" },
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
@@ -49,10 +51,10 @@ export class HomePageComponent implements OnInit {
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
         
         .setScaleOptionsY(10, 120)
-        .isResponsive()
+        // .isResponsive()
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         .setLabelTextColor('rgb(255, 187, 0)')
-        .setCallbacksLabel('Evecedo Maraldo')
+        // .setCallbacksLabel('Evecedo Maraldo')
         .setLabelColor('red', 'green')
         .showLabelPointStyle(PointStyleKeyType.DASH, 0);
     }
