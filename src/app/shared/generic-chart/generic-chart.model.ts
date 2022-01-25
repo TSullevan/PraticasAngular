@@ -2,20 +2,23 @@ import { ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpe
 import { LayoutModel } from "./models/layout-model";
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
+import { GenericChartConfig } from "./generic-chart.config";
+import { GenericChartType } from "./enums/generic-chart-type.enum";
 
 export class GenericChartModel {
     genericChartData: GenericChartData = new GenericChartData();
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
+    genericChartConfig: GenericChartConfig = new GenericChartConfig(GenericChartType.BAR);
+
     enableExactDataPlugin: boolean = false;
 
     // chartOptions: string = '';
     chartLegend: boolean = true;
-    type: any = ''
     title: string = '';
     // chartPlugins: string = '';
 
-    constructor(type: string) {
-        this.type = type;
+    constructor(chartConfig: GenericChartConfig) {
+        this.genericChartConfig = chartConfig;
     }
 
     public setLabelTextColor(cssColor: string): GenericChartModel {

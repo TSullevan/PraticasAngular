@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardModel } from 'src/app/shared/components/card/card.model';
-import { GenericChartModel, GenericChartOptions } from 'src/app/shared/generic-chart/generic-chart.model';
+import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart.model';
 import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
 import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
 import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-point-style-type.enum';
@@ -16,28 +16,31 @@ export class HomePageComponent implements OnInit {
 
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
 
-  public radarChart: GenericChartModel = new GenericChartModel(GenericChartType.RADAR);
+  public radarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.RADAR));
 
-  public pieChart: GenericChartModel = new GenericChartModel(GenericChartType.PIE);
+  public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE));
 
   constructor() {
 
-    this.genericCharts.push(new GenericChartModel(GenericChartType.BAR));
-    this.genericCharts.push(new GenericChartModel(GenericChartType.DOUGHNUT));
-    this.genericCharts.push(new GenericChartModel(GenericChartType.LINE));
-    this.genericCharts.push(new GenericChartModel(GenericChartType.POLAR));
-    this.genericCharts.push(new GenericChartModel(GenericChartType.BUBBLE));
-    this.genericCharts.push(new GenericChartModel(GenericChartType.SCATTER));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.BAR)));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.DOUGHNUT)));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.LINE)));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.POLAR)));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.BUBBLE)));
+    this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.SCATTER)));
 
     for (let chart of this.genericCharts) {
-      chart.setTitle(chart.type).isResponsive()
-        .setScaleOptionsY(10, 120)
+      chart
+        .setTitle(chart.genericChartConfig.type)
         .setData([
           { data: [65, 59, 80, 81, 56, 55, 40], label: 'Everaldo Macedo', backgroundColor: "rgba(53, 60, 189, 0.6)" },
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
-      .setLayout(50)
+        
+        .setScaleOptionsY(10, 120)
+        .isResponsive()
+        .setLayout(50)
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         .setLabelTextColor('rgb(255, 187, 0)')
         .setCallbacksLabel('Evecedo Maraldo')

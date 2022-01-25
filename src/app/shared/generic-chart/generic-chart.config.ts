@@ -8,4 +8,10 @@ export class GenericChartConfig {
     public static ExactDataPlugin = DataPluginPositionConfig;
     public static PluginAlignType = PluginAlignType;
     public static PluginAnchorType = PluginAnchorType;
+
+    public type: any;
+
+    constructor(type: any) {
+        this.type = type;
+    }
 }
