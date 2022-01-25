@@ -47,6 +47,11 @@ export class GenericChartModel {
         return this;
     }
 
+    public showLabelPointStyle(pointStyle: string, rotation: number) {
+        this.genericChartOptions.plugins.tooltip.usePointStyle = true;
+        this.genericChartOptions.setLabelPointStyle(pointStyle, rotation)
+    }
+
     public setScaleOptionsX(min?: number, max?: number): GenericChartModel {
         this.genericChartOptions.setScaleAxeX(min, max);
         return this;
@@ -150,6 +155,16 @@ export class GenericChartOptions {
             return {
             borderColor: borderColor,
             backgroundColor: backgroundColor
+            }
+        };
+        return this;
+    }
+
+    public setLabelPointStyle(pointStyle: string, rotation: number): GenericChartOptions {
+        this.plugins.tooltip.callbacks.labelPointStyle = function() {
+            return {
+              pointStyle: pointStyle,
+              rotation: rotation
             }
         };
         return this;
