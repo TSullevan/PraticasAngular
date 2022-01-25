@@ -79,6 +79,15 @@ export class GenericChartConfig {
         return this;
     }
 
+    public setLabelTextColor(labelTextColor: string): GenericChartConfig {
+        this.plugins.tooltip.callbacks.labelTextColor = labelTextColor;
+        return this;
+    }
+
+    public showLabelTextColor(labelTextColor: string): GenericChartConfig {
+        this.setLabelTextColor(labelTextColor);
+        return this;
+    }
     constructor(type: any) {
         this.type = type;
     }

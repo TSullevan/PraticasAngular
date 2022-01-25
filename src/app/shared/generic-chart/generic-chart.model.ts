@@ -22,7 +22,9 @@ export class GenericChartModel {
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
         this.isResponsive();
-        this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label)
+        this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);
+        this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor)
+        // this.setLabelColor();
     }
 
     public setLabelTextColor(cssColor: string): GenericChartModel {

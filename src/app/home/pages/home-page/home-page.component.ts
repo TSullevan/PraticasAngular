@@ -26,7 +26,8 @@ export class HomePageComponent implements OnInit {
       .setPadding(50)
       .setTitle('Everaldo')
       .isResponsive()
-      .showCallbacksLabel('Chicote, Algema');
+      .showCallbacksLabel('Chicote, Algema')
+      .showLabelTextColor('rgb(31, 204, 77)');
 
     let data = '';
     let label = '';
@@ -53,10 +54,10 @@ export class HomePageComponent implements OnInit {
         .setScaleOptionsY(10, 120)
         // .isResponsive()
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
-        .setLabelTextColor('rgb(255, 187, 0)')
+        // .setLabelTextColor('rgb(255, 187, 0)')
         // .setCallbacksLabel('Evecedo Maraldo')
-        .setLabelColor('red', 'green')
-        .showLabelPointStyle(PointStyleKeyType.DASH, 0);
+        // .setLabelColor('red', 'green')
+        .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
     }
 
     this.radarChart = (
