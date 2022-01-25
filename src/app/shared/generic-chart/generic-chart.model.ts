@@ -8,17 +8,19 @@ import { GenericChartType } from "./enums/generic-chart-type.enum";
 export class GenericChartModel {
     genericChartData: GenericChartData = new GenericChartData();
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
-    genericChartConfig: GenericChartConfig = new GenericChartConfig(GenericChartType.BAR);
 
     enableExactDataPlugin: boolean = false;
 
     // chartOptions: string = '';
     chartLegend: boolean = true;
     title: string = '';
+    chartType: any;
     // chartPlugins: string = '';
 
     constructor(chartConfig: GenericChartConfig) {
-        this.genericChartConfig = chartConfig;
+        this.setLayout(chartConfig.layout.padding);
+        this.chartType = chartConfig.type;
+        this.setTitle(chartConfig.title);
     }
 
     public setLabelTextColor(cssColor: string): GenericChartModel {
@@ -85,7 +87,7 @@ export class GenericChartModel {
         return this;
     }
 
-    public setLayout(padding?: number): GenericChartModel {
+    private setLayout(padding?: number): GenericChartModel {
         this.genericChartOptions.setPadding(padding);
         return this;
     }
