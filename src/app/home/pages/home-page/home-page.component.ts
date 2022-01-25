@@ -3,6 +3,7 @@ import { CardModel } from 'src/app/shared/components/card/card.model';
 import { GenericChartModel, GenericChartOptions } from 'src/app/shared/generic-chart/generic-chart.model';
 import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
 import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
+import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-point-style-type.enum';
 
 @Component({
   selector: 'app-home-page',
@@ -40,7 +41,8 @@ export class HomePageComponent implements OnInit {
         .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         .setLabelTextColor('rgb(255, 187, 0)')
         .setCallbacksLabel('Evecedo Maraldo')
-        .setLabelColor('red', 'green');
+        .setLabelColor('red', 'green')
+        .showLabelPointStyle(PointStyleKeyType.DASH, 0);
     }
 
     this.radarChart = (
