@@ -30,7 +30,8 @@ export class HomePageComponent implements OnInit {
       .showLabelTextColor('rgb(31, 204, 77)')
       .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER)
       .setScaleOptionsY(0, 100)
-      .showLabelPointStyle(PointStyleKeyType.RECTANGULAR, 45);
+      .showLabelPointStyle(PointStyleKeyType.RECTANGULAR, 45)
+      .showLabelColor('orange', 'blue');
 
     let data = '';
     let label = '';
@@ -59,7 +60,7 @@ export class HomePageComponent implements OnInit {
         // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         // .setLabelTextColor('rgb(255, 187, 0)')
         // .setCallbacksLabel('Evecedo Maraldo')
-        .setLabelColor('red', 'green')
+        // .setLabelColor('red', 'green')
         // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
     }
 

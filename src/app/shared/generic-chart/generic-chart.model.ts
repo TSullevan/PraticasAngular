@@ -28,6 +28,7 @@ export class GenericChartModel {
         this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max) 
         this.showLabelPointStyle(chartConfig.plugins.tooltip.callbacks.labelPointStyle.pointStyle, 
                                  chartConfig.plugins.tooltip.callbacks.labelPointStyle.rotation)
+        this.setLabelColor(chartConfig.plugins.tooltip.callbacks.labelColor.backgroundColor, chartConfig.plugins.tooltip.callbacks.labelColor.borderColor);
         // this.setLabelColor();
     }
 

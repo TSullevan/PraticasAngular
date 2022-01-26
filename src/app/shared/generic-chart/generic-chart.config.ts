@@ -24,7 +24,10 @@ export class GenericChartConfig {
             usePointStyle: boolean,
             callbacks: {
                 label: any,
-                labelColor: any,
+                labelColor: {
+                    borderColor: any, 
+                    backgroundColor: any
+                },
                 labelTextColor: any,
                 labelPointStyle: {
                     pointStyle: any, 
@@ -38,7 +41,10 @@ export class GenericChartConfig {
                 usePointStyle: false,
                 callbacks: {
                     label: undefined,
-                    labelColor: undefined,
+                    labelColor: {
+                        backgroundColor: '',
+                        borderColor: ''
+                    },
                     labelTextColor: undefined,
                     labelPointStyle: {
                         pointStyle: '',
@@ -146,6 +152,17 @@ export class GenericChartConfig {
     public showLabelPointStyle(pointStyle: string, rotation: number): GenericChartConfig {
         this.plugins.tooltip.usePointStyle = true;
         this.setLabelPointStyle(pointStyle, rotation)
+        return this;
+    }
+
+    private setLabelColor(backgroundColor: string, borderColor: string): GenericChartConfig {
+        this.plugins.tooltip.callbacks.labelColor.backgroundColor = backgroundColor,
+        this.plugins.tooltip.callbacks.labelColor.borderColor = borderColor;
+        return this;
+    }
+
+    public showLabelColor(backgroundColor: string, borderColor:string): GenericChartConfig {
+        this.setLabelColor(backgroundColor, borderColor)
         return this;
     }
 
