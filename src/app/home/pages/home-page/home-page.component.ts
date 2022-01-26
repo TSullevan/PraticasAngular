@@ -96,32 +96,32 @@ export class HomePageComponent implements OnInit {
         // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
     }
 
-    this.radarChart = (
-      this.radarChart.isResponsive(),
-      this.radarChart.setData(
-        [
-          { data: [21, 31, 41, 51, 61, 71, 81], label: 'Suzanne Von Richtoften', backgroundColor: "rgba(255, 0, 179, 0.5)" },
-          { data: [1, 66, 21, 89, 97, 12, 44], label: 'Celso', backgroundColor: "rgba(251, 255, 0, 0.7)" },
-        ]
-      ),
-      this.radarChart.setLabel(
-        ['1992', '1993', '1994', '1995', '2000', '2001', '2002']
-      ),
-      this.radarChart.setTitle(GenericChartType.RADAR)
-    );
+    // this.radarChart = (
+    //   this.radarChart.isResponsive(),
+    //   this.radarChart.setData(
+    //     [
+    //       { data: [21, 31, 41, 51, 61, 71, 81], label: 'Suzanne Von Richtoften', backgroundColor: "rgba(255, 0, 179, 0.5)" },
+    //       { data: [1, 66, 21, 89, 97, 12, 44], label: 'Celso', backgroundColor: "rgba(251, 255, 0, 0.7)" },
+    //     ]
+    //   ),
+    //   this.radarChart.setLabel(
+    //     ['1992', '1993', '1994', '1995', '2000', '2001', '2002']
+    //   ),
+    //   this.radarChart.setTitle(GenericChartType.RADAR)
+    // );
 
-    this.pieChart = (
-      this.pieChart.isResponsive(),
-      this.pieChart.setData(
-        [
-          { data: [90, 80, 70, 60], backgroundColor: ["red", "yellow", "black", "orange"] },
-        ]
-      ),
-      this.pieChart.setLabel(
-        [['Xbox Series S'], ['Playstation 5'], ['Ninendo Switch'], ['PC']]
-      ),
-      this.pieChart.setTitle(GenericChartType.PIE)
-    )
+    // this.pieChart = (
+    //   this.pieChart.isResponsive(),
+    //   this.pieChart.setData(
+    //     [
+    //       { data: [90, 80, 70, 60], backgroundColor: ["red", "yellow", "black", "orange"] },
+    //     ]
+    //   ),
+    //   this.pieChart.setLabel(
+    //     [['Xbox Series S'], ['Playstation 5'], ['Ninendo Switch'], ['PC']]
+    //   ),
+    //   this.pieChart.setTitle(GenericChartType.PIE)
+    // )
 
 
 
