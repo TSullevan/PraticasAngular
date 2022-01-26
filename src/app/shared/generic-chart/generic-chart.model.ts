@@ -18,7 +18,6 @@ export class GenericChartModel {
     // chartPlugins: string = '';
 
     constructor(chartConfig: GenericChartConfig) { 
-        debugger
         this.setLayout(chartConfig.layout.padding);
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
@@ -26,7 +25,9 @@ export class GenericChartModel {
         this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);
         this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor);
         this.showExactDataPlugin(chartConfig.plugins.datalabels);
-        this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max)
+        this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max) 
+        this.showLabelPointStyle(chartConfig.plugins.tooltip.callbacks.labelPointStyle.pointStyle, 
+                                 chartConfig.plugins.tooltip.callbacks.labelPointStyle.rotation)
         // this.setLabelColor();
     }
 
@@ -59,9 +60,10 @@ export class GenericChartModel {
         return this;
     }
 
-    public showLabelPointStyle(pointStyle: string, rotation: number) {
+    public showLabelPointStyle(pointStyle: string, rotation: number): GenericChartModel {
         this.genericChartOptions.plugins.tooltip.usePointStyle = true;
-        this.genericChartOptions.setLabelPointStyle(pointStyle, rotation)
+        this.genericChartOptions.setLabelPointStyle(pointStyle, rotation);
+        return this;
     }
 
     public setScaleOptionsX(min?: number, max?: number): GenericChartModel {

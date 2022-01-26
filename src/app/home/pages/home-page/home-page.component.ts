@@ -29,7 +29,8 @@ export class HomePageComponent implements OnInit {
       .showCallbacksLabel('Chicote, Algema')
       .showLabelTextColor('rgb(31, 204, 77)')
       .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER)
-      .setScaleOptionsY(0, 100);
+      .setScaleOptionsY(0, 100)
+      .showLabelPointStyle(PointStyleKeyType.RECTANGULAR, 45);
 
     let data = '';
     let label = '';
@@ -58,8 +59,8 @@ export class HomePageComponent implements OnInit {
         // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         // .setLabelTextColor('rgb(255, 187, 0)')
         // .setCallbacksLabel('Evecedo Maraldo')
-        // .setLabelColor('red', 'green')
-        .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
+        .setLabelColor('red', 'green')
+        // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
     }
 
     this.radarChart = (

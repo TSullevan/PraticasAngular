@@ -26,7 +26,10 @@ export class GenericChartConfig {
                 label: any,
                 labelColor: any,
                 labelTextColor: any,
-                labelPointStyle: any
+                labelPointStyle: {
+                    pointStyle: any, 
+                    rotation: any
+                }
             }
         }
     } = {
@@ -37,7 +40,10 @@ export class GenericChartConfig {
                     label: undefined,
                     labelColor: undefined,
                     labelTextColor: undefined,
-                    labelPointStyle: undefined
+                    labelPointStyle: {
+                        pointStyle: '',
+                        rotation: null 
+                    }
                 }
             }
         };
@@ -100,7 +106,6 @@ export class GenericChartConfig {
     }
 
     public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartConfig {
-        debugger
         this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
         this.enableExactDataPlugin = true;
         return this;
@@ -130,6 +135,17 @@ export class GenericChartConfig {
 
     public setScaleOptionsY(min?: number, max?: number): GenericChartConfig {
         this.setScaleAxeY(min, max);
+        return this;
+    }
+
+    public setLabelPointStyle(pointStyle: string, rotation: number): GenericChartConfig {
+        this.plugins.tooltip.callbacks.labelPointStyle.pointStyle = pointStyle;
+        this.plugins.tooltip.callbacks.labelPointStyle.rotation = rotation;
+        return this;
+    }
+    public showLabelPointStyle(pointStyle: string, rotation: number): GenericChartConfig {
+        this.plugins.tooltip.usePointStyle = true;
+        this.setLabelPointStyle(pointStyle, rotation)
         return this;
     }
 
