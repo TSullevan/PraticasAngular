@@ -30,15 +30,47 @@ export class HomePageComponent implements OnInit {
       .showLabelTextColor('rgb(31, 204, 77)')
       .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER)
       .setScaleOptionsY(0, 100)
-      .showLabelPointStyle(PointStyleKeyType.RECTANGULAR, 45)
+      .showLabelPointStyle(PointStyleKeyType.RECTANGULAR, 0)
       .showLabelColor('orange', 'blue');
 
-    let data = '';
+      let data = '';
     let label = '';
+
+
+    let barChartConfig = new GenericChartConfig(GenericChartType.BAR)
+      .setPadding(10)
+      .setTitle('Valdevino Tatuí')
+      .isResponsive()
+      .showCallbacksLabel('Bom dia, ValTatuí!')
+      .showLabelTextColor('pink')
+      .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
+      .setScaleOptionsY(0, 200)
+      .showLabelPointStyle(PointStyleKeyType.TRIANGLE, 90)
+      .showLabelColor('yellow', 'green');
+
+    let pieChartConfig = new GenericChartConfig(GenericChartType.PIE)
+      .setPadding(10)
+      .setTitle('Pastelaria do Ramirez')
+      .isResponsive()
+      .showCallbacksLabel('1 Copo de Caju e um Pastelão')
+      .showLabelTextColor('white')
+      .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER)
+      .setScaleOptionsY(0, 400)
+      .showLabelPointStyle(PointStyleKeyType.DASH, 90)
+      .showLabelColor('grey', 'black');
+
+    let barChart = new GenericChartModel(barChartConfig)
+
+    let pieChart = new GenericChartModel(pieChartConfig)
+    
 
     let chart = new GenericChartModel(config);
 
     this.genericCharts.push(chart);
+
+    this.genericCharts.push(pieChart);
+
+    this.genericCharts.push(barChart)
 
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.DOUGHNUT)));
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.LINE)));
