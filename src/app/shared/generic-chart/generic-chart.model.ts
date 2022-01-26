@@ -24,8 +24,9 @@ export class GenericChartModel {
         this.setTitle(chartConfig.title);
         this.isResponsive();
         this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);
-        this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor)
-        this.showExactDataPlugin(chartConfig.plugins.datalabels)
+        this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor);
+        this.showExactDataPlugin(chartConfig.plugins.datalabels);
+        this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max)
         // this.setLabelColor();
     }
 

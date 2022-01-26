@@ -28,7 +28,8 @@ export class HomePageComponent implements OnInit {
       .isResponsive()
       .showCallbacksLabel('Chicote, Algema')
       .showLabelTextColor('rgb(31, 204, 77)')
-      .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER);
+      .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER)
+      .setScaleOptionsY(0, 100);
 
     let data = '';
     let label = '';
@@ -52,7 +53,7 @@ export class HomePageComponent implements OnInit {
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
         
-        .setScaleOptionsY(0, 120)
+        // .setScaleOptionsY(0, 120)
         // .isResponsive()
         // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         // .setLabelTextColor('rgb(255, 187, 0)')

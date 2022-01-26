@@ -41,6 +41,15 @@ export class GenericChartConfig {
                 }
             }
         };
+    public scales: 
+            { 
+              x: { min?: number, max?: number }, 
+              y: { min?: number, max?: number } 
+        } = { 
+              x: { min: undefined, max: undefined }, 
+              y: { min: undefined, max: undefined } 
+            };    
+
 
     public getChartPlugins(): Array<Plugin> {
 
@@ -110,6 +119,17 @@ export class GenericChartConfig {
 
     public setAlign(align: any): GenericChartConfig {
         this.plugins.datalabels.align = align;
+        return this;
+    }
+
+    private setScaleAxeY(min?: number, max?: number): GenericChartConfig {
+        this.scales.y.min = min;
+        this.scales.y.max = max;
+        return this;
+    }
+
+    public setScaleOptionsY(min?: number, max?: number): GenericChartConfig {
+        this.setScaleAxeY(min, max);
         return this;
     }
 
