@@ -27,7 +27,8 @@ export class HomePageComponent implements OnInit {
       .setTitle('Everaldo')
       .isResponsive()
       .showCallbacksLabel('Chicote, Algema')
-      .showLabelTextColor('rgb(31, 204, 77)');
+      .showLabelTextColor('rgb(31, 204, 77)')
+      .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.CENTER_CENTER);
 
     let data = '';
     let label = '';
@@ -51,9 +52,9 @@ export class HomePageComponent implements OnInit {
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
         
-        .setScaleOptionsY(10, 120)
+        .setScaleOptionsY(0, 120)
         // .isResponsive()
-        .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
+        // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
         // .setLabelTextColor('rgb(255, 187, 0)')
         // .setCallbacksLabel('Evecedo Maraldo')
         // .setLabelColor('red', 'green')

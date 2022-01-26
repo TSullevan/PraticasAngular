@@ -18,12 +18,14 @@ export class GenericChartModel {
     // chartPlugins: string = '';
 
     constructor(chartConfig: GenericChartConfig) { 
+        debugger
         this.setLayout(chartConfig.layout.padding);
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
         this.isResponsive();
         this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);
         this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor)
+        this.showExactDataPlugin(chartConfig.plugins.datalabels)
         // this.setLabelColor();
     }
 

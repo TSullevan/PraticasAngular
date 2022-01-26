@@ -5,6 +5,7 @@ import { PluginAnchorType } from "./enums/plugin-anchor-type.enum";
 import { LayoutModel } from "./models/layout-model";
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { Plugin } from 'chart.js';
+import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
 
 export class GenericChartConfig {
     public static GenericChartType = GenericChartType;
@@ -88,6 +89,30 @@ export class GenericChartConfig {
         this.setLabelTextColor(labelTextColor);
         return this;
     }
+
+    public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartConfig {
+        debugger
+        this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
+        this.enableExactDataPlugin = true;
+        return this;
+    }
+
+    private setDataPluginPosition(anchor: string, align: string): GenericChartConfig {
+        this.setAnchor(anchor);
+        this.setAlign(align);
+        return this;
+    }
+
+    public setAnchor(anchor: any): GenericChartConfig {
+        this.plugins.datalabels.anchor = anchor;
+        return this;
+    }
+
+    public setAlign(align: any): GenericChartConfig {
+        this.plugins.datalabels.align = align;
+        return this;
+    }
+
     constructor(type: any) {
         this.type = type;
     }
