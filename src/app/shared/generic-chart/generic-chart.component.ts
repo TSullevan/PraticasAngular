@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, Plugin } from 'chart.js';
-import { GenericChartModel } from './generic-chart.model';
+import { GenericChartData, GenericChartModel } from './generic-chart.model';
 import { GenericChartType } from './enums/generic-chart-type.enum';
 import { GenericChartConfig } from './generic-chart.config';
-
+import { HttpService } from '../services/http.service';
+import { DataResponse } from './models/DataResponse.model';
 @Component({
   selector: 'app-generic-chart',
   templateUrl: './generic-chart.component.html',
@@ -21,9 +22,16 @@ export class GenericChartComponent implements OnInit {
 
   public chartPlugins?: Array<Plugin>;
 
-  constructor() { }
+  dataApi?: DataResponse;
+
+  constructor(
+    public httpService: HttpService
+    ) { }
 
   ngOnInit(): void {
+
+    this.getDatas();
+
     this.chartData = this.model.genericChartData.getChartData();
 
     this.chartOptions = this.model.genericChartOptions.getChartOptions();
@@ -31,4 +39,11 @@ export class GenericChartComponent implements OnInit {
     this.chartPlugins = this.model.getChartPlugins();
   }
 
+  getDatas(){
+    this.httpService.getDataFromApi('DataResponse').subscribe(data => {
+      this.dataApi = data;
+      console.log(this.dataApi)
+    })
+  }
+  
 }
