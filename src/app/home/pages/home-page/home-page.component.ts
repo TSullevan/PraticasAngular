@@ -4,6 +4,8 @@ import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart.mo
 import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
 import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
 import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-point-style-type.enum';
+import { DataResponse } from 'src/app/shared/generic-chart/models/DataResponse.model';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,17 +13,18 @@ import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-poi
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-
+  
   public cards = new Array<CardModel>(new CardModel);
-
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
-
+  
   public radarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.RADAR));
-
+  
   public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE));
+  
+  private dataApi: DataResponse = new DataResponse;
 
-  constructor() {
-
+  constructor(private httpService: HttpService) {
+  
     let config = new GenericChartConfig(GenericChartType.BAR)
       .setPadding(50)
       .setTitle('Everaldo')
@@ -38,8 +41,8 @@ export class HomePageComponent implements OnInit {
 
 
     let barChartConfig = new GenericChartConfig(GenericChartType.BAR)
+    .setTitle('Valdevino Tatuí')
       .setPadding(10)
-      .setTitle('Valdevino Tatuí')
       .isResponsive()
       .showCallbacksLabel('Bom dia, ValTatuí!')
       .showLabelTextColor('pink')
@@ -77,15 +80,22 @@ export class HomePageComponent implements OnInit {
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.POLAR)));
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.BUBBLE)));
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.SCATTER)));
+   
+    
+    this.httpService.getDataFromApi('DataResponse').subscribe(data => {
+      this.dataApi = data;
+    })
 
     for (let chart of this.genericCharts) {
       chart
         // .setTitle(chart.chartType)
         .setData([
-          { data: [65, 59, 80, 81, 56, 55, 40], label: 'Everaldo Macedo', backgroundColor: "rgba(53, 60, 189, 0.6)" },
+          { data: [this.dataApi.data], label: this.dataApi.label, backgroundColor: "rgba(53, 60, 189, 0.6)" },
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
+
+      
         
         // .setScaleOptionsY(0, 120)
         // .isResponsive()

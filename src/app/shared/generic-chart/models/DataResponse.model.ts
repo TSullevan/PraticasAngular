@@ -1,5 +1,5 @@
 
 export class DataResponse {
-    data?: Array<any>[];
-    label?: string;
-}
+    data: Array<number> = new Array<number>();
+    label: string = '';
+}   

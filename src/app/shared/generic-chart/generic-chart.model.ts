@@ -4,6 +4,8 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
 import { GenericChartConfig } from "./generic-chart.config";
 import { GenericChartType } from "./enums/generic-chart-type.enum";
+import { DataResponse } from "./models/DataResponse.model";
+import { NumberValueAccessor } from "@angular/forms";
 
 export class GenericChartModel {
     genericChartData: GenericChartData = new GenericChartData();
@@ -87,7 +89,7 @@ export class GenericChartModel {
         return this;
     }
 
-    public setData(datasets: any): GenericChartModel {
+    public  setData(datasets: any): GenericChartModel {
         this.genericChartData.datasets = datasets;
         return this;
     }
@@ -119,7 +121,7 @@ export class GenericChartModel {
 }
 export class GenericChartData {
     labels: Array<string> = new Array<string>();
-    datasets: Array<DataSet> = new Array<DataSet>();
+    datasets: Array<any> = new Array<any>();
 
     public getChartData(): ChartData<'pie'> {
         return this;

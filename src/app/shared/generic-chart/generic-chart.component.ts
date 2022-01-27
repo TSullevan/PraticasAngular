@@ -22,7 +22,7 @@ export class GenericChartComponent implements OnInit {
 
   public chartPlugins?: Array<Plugin>;
 
-  dataApi?: DataResponse;
+  
 
   constructor(
     public httpService: HttpService
@@ -30,20 +30,10 @@ export class GenericChartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getDatas();
-
     this.chartData = this.model.genericChartData.getChartData();
-
+    
     this.chartOptions = this.model.genericChartOptions.getChartOptions();
-
+    
     this.chartPlugins = this.model.getChartPlugins();
   }
-
-  getDatas(){
-    this.httpService.getDataFromApi('DataResponse').subscribe(data => {
-      this.dataApi = data;
-      console.log(this.dataApi)
-    })
-  }
-  
 }
