@@ -1,37 +1,27 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { DataResponse } from '../generic-chart/models/DataResponse.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
+  apiUrl = 'https://localhost:44365'
+
+  httpOptions = {
+    Headers: new HttpHeaders({
+      'content-type': 'application/json'
+
+    })
+  };
+  
 
   constructor(private httpClient: HttpClient) { }
 
-  public delete(route: string, id: number): Observable<boolean> {
-    return this.httpClient.delete<boolean>(environment.baseApiUrl + route + '/' + id);
-  }
+  public getDataFromApi(list: any): Observable<DataResponse> {
+    return this.httpClient.get<DataResponse>(this.apiUrl + '/datascience')
 
-  public get<Model>(route: string,  id: number): Observable<Model> {
-    return this.httpClient.get<Model>(environment.baseApiUrl + route + '/' + id);
   }
-
-  public getall<Model>(route: string): Observable<Model> {
-    return this.httpClient.get<Model>(environment.baseApiUrl + route);
-  }
-
-  public post(route: string,  model: FormData): Observable<any> {
-    return this.httpClient.post(environment.baseApiUrl + route, model);
-  }
-
-  public update<Model>(route: string, model: Model): Observable<Model> {
-    return this.httpClient.put<Model>(environment.baseApiUrl + route, model);
-  }
-  public clear<Model>(route: string, model: Model): Observable<Model> {
-    return this.httpClient.get<Model>(environment.baseApiUrl + route, model);
-  }
-
 }

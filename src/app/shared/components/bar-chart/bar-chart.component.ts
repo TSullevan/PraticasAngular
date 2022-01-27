@@ -99,15 +99,15 @@ export class BarChartComponent implements OnInit {
     alert("teste");
   }
 
-  public getMethod(): any {
-    let id = 5;
-    this.httpService.get<UserModel>('user', id)
-      .subscribe(
-        (user: UserModel) => this.user = user
-      )
-      return this.user;
+  // public getMethod(): any {
+  //   let id = 5;
+  //   this.httpService.get<UserModel>('user', id)
+  //     .subscribe(
+  //       (user: UserModel) => this.user = user
+  //     )
+  //     return this.user;
       
-  }
+  // }
 
   constructor(private httpService: HttpService) { }
 

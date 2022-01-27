@@ -21,7 +21,7 @@ export class RegisterPageComponent extends BaseFormPageModel {
 
     super();
     this.form.setClass('')
-      .setSendMethod(this.httpService.post.bind(this.httpService)).setSendRoute('User')
+      // .setSendMethod(this.httpService.post.bind(this.httpService)).setSendRoute('User')
       .addRow(new RowModel()
         .addCol(new ColModel().setCol(5).setInput(new InputModel().asName().asRequired()))
         .addCol(new ColModel().setCol(3).setInput(new InputModel().asTelephone())))
@@ -33,26 +33,26 @@ export class RegisterPageComponent extends BaseFormPageModel {
   ngOnInit(): void {
   }
 
-  public deleteMethod(): void {
+  // public deleteMethod(): void {
 
-    let id = 5;
-    this.httpService.delete('user', id).subscribe();
-    alert ('Deletado!!!');
-  }
+  //   let id = 5;
+  //   this.httpService.delete('user', id).subscribe();
+  //   alert ('Deletado!!!');
+  // }
 
-  public getMethod(): void {
-    let id = 5;
-    this.httpService.get<UserModel>('user', id)
-      .subscribe(
-        (user: UserModel) => this.user = user
-      );
-  }
+  // public getMethod(): void {
+  //   let id = 5;
+  //   this.httpService.get<UserModel>('user', id)
+  //     .subscribe(
+  //       (user: UserModel) => this.user = user
+  //     );
+  // }
 
-  public getAllMethod(): void {
-    this.httpService.getall<UserModel>('user').subscribe(
-      (user: UserModel) => this.user = user
-    );
-  }
+  // public getAllMethod(): void {
+  //   this.httpService.getall<UserModel>('user').subscribe(
+  //     (user: UserModel) => this.user = user
+  //   );
+  // }
 
   public createMethod(): void {
     let user: UserModel = new UserModel();
@@ -63,15 +63,15 @@ export class RegisterPageComponent extends BaseFormPageModel {
     // this.httpService.post('user', user).subscribe();
   }
 
-  public updateMethod(): void {
-    let user: UserModel = new UserModel();
-    user.name = "Everaldo";
-    user.cpf = "444666777221";
-    user.telephone1 = "19 9 9221 9832";
-    user.telephone2 = "19 9 8773 3382";
-    this.httpService.update<UserModel>('user', user)
-    .subscribe();
-  }
+  // public updateMethod(): void {
+  //   let user: UserModel = new UserModel();
+  //   user.name = "Everaldo";
+  //   user.cpf = "444666777221";
+  //   user.telephone1 = "19 9 9221 9832";
+  //   user.telephone2 = "19 9 8773 3382";
+  //   this.httpService.update<UserModel>('user', user)
+  //   .subscribe();
+  // }
 
   public cleanMethod(): void {
     this.user = new UserModel();
