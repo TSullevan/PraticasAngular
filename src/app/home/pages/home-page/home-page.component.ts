@@ -21,9 +21,38 @@ export class HomePageComponent implements OnInit {
   
   public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE));
   
-  private dataApi: DataResponse = new DataResponse;
+  public dataApi: DataResponse = new DataResponse();
 
   constructor(private httpService: HttpService) {
+
+    this.httpService.get<DataResponse>('data-science').subscribe(data => {
+      this.dataApi = data;
+
+    })
+    for (let chart of this.genericCharts) {
+      chart
+        // .setTitle(chart.chartType)
+        .setData([
+          { data: [this.dataApi.data], label: this.dataApi.label, backgroundColor: "rgba(53, 60, 189, 0.6)" },
+          { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
+        ])
+        .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
+        
+
+      
+        
+        // .setScaleOptionsY(0, 120)
+        // .isResponsive()
+        // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
+        // .setLabelTextColor('rgb(255, 187, 0)')
+        // .setCallbacksLabel('Evecedo Maraldo')
+        // .setLabelColor('red', 'green')
+        // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
+    }
+  }
+
+  ngOnInit(): void {
+    
   
     let config = new GenericChartConfig(GenericChartType.BAR)
       .setPadding(50)
@@ -82,9 +111,7 @@ export class HomePageComponent implements OnInit {
     this.genericCharts.push(new GenericChartModel(new GenericChartConfig(GenericChartType.SCATTER)));
    
     
-    this.httpService.getDataFromApi('DataResponse').subscribe(data => {
-      this.dataApi = data;
-    })
+    
 
     for (let chart of this.genericCharts) {
       chart
@@ -96,7 +123,7 @@ export class HomePageComponent implements OnInit {
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
 
       
-        
+      
         // .setScaleOptionsY(0, 120)
         // .isResponsive()
         // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
@@ -153,8 +180,6 @@ export class HomePageComponent implements OnInit {
     this.cards.push(vodkaCard);
 
   }
-
-  ngOnInit(): void {
-  }
+  
 
 }

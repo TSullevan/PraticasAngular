@@ -22,8 +22,6 @@ export class GenericChartComponent implements OnInit {
 
   public chartPlugins?: Array<Plugin>;
 
-  
-
   constructor(
     public httpService: HttpService
     ) { }

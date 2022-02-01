@@ -1,4 +1,4 @@
-import { ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpec, Plugin } from "chart.js";
+import { Chart, ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpec, Plugin } from "chart.js";
 import { LayoutModel } from "./models/layout-model";
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
@@ -19,7 +19,7 @@ export class GenericChartModel {
     chartType: any;
     // chartPlugins: string = '';
 
-    constructor(chartConfig: GenericChartConfig) { 
+    constructor(chartConfig: GenericChartConfig) {
         this.setLayout(chartConfig.layout.padding);
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
