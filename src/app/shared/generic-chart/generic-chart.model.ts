@@ -12,12 +12,11 @@ export class GenericChartModel {
 
     chartLegend: boolean = true;
     title: string = '';
-    chartType: any;
 
     constructor(chartConfig: GenericChartConfig) {
         this.setFetchRoute(chartConfig.fetchRoute);
         this.setLayout(chartConfig.layout.padding);
-        this.chartType = chartConfig.type;
+        this.genericCanvas.setChartType(chartConfig.type);
         this.setTitle(chartConfig.title);
         this.isResponsive();
         this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);

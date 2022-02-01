@@ -13,22 +13,30 @@ import { DataResponse } from 'src/app/shared/generic-chart/models/DataResponse.m
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
-  public barChartTest: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR, 'exchange_rates'));
   
   public cards = new Array<CardModel>(new CardModel);
-
+  
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
   
-  public radarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.RADAR));
+  public barChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR, 'exchange_rates').setTitle('BAR'));
   
-  public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE));
+  public radarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.RADAR, 'exchange_rates').setTitle('RADAR'));
+  
+  public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE, 'exchange_rates').setTitle('PIE'));
+
+  public bubbleChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BUBBLE, 'exchange_rates').setTitle('BUBBLE'));
+ 
+  public doughnutChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.DOUGHNUT, 'exchange_rates').setTitle('DOUGHNUT'));
+ 
+  public lineChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.LINE, 'exchange_rates').setTitle('LINE'));
+  
+  public polarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.POLAR, 'exchange_rates').setTitle('POLAR'));
+  
+  public scatterChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.SCATTER, 'exchange_rates').setTitle('SCATTER'));
   
   public dataApi: DataResponse = new DataResponse();
 
-
-  constructor() {
-       
-  }
+  constructor() { }
 
   ngOnInit(): void {
   

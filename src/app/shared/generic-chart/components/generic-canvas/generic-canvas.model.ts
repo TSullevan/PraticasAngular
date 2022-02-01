@@ -1,5 +1,6 @@
-import { ChartConfiguration, Plugin } from "chart.js";
+import { ChartConfiguration, ChartType, Plugin } from "chart.js";
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { GenericChartType } from "../../enums/generic-chart-type.enum";
 import { GenericChartOptions } from "../../generic-chart.model";
 import { ExactDataPluginPositionModel } from "../../models/exact-data-plugin-position.model";
 
@@ -7,10 +8,16 @@ export class GenericCanvasModel {
     fetchRoute: string = '';
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
     chartPlugins?: Array<Plugin>;
+    chartType: ChartType = GenericChartType.BAR;
 
-    enableExactDataPlugin: boolean = false;
+    private enableExactDataPlugin: boolean = false;
 
     constructor() {
+    }
+
+    public setChartType(chartType: ChartType): GenericCanvasModel {
+        this.chartType = chartType;
+        return this;
     }
 
     public getChartOptions(): ChartConfiguration['options'] {
