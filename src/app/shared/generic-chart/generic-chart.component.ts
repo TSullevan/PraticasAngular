@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, Plugin } from 'chart.js';
 import { GenericChartData, GenericChartModel } from './generic-chart.model';
 import { GenericChartType } from './enums/generic-chart-type.enum';
@@ -13,6 +13,7 @@ import { DataResponse } from './models/DataResponse.model';
 export class GenericChartComponent implements OnInit {
 
   @Input() model: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR));
+
 
   public genericChartType = GenericChartType;
 

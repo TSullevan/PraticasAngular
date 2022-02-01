@@ -6,12 +6,14 @@ import { GenericChartConfig } from "./generic-chart.config";
 import { GenericChartType } from "./enums/generic-chart-type.enum";
 import { DataResponse } from "./models/DataResponse.model";
 import { NumberValueAccessor } from "@angular/forms";
+import { HttpService } from "../services/http.service";
 
 export class GenericChartModel {
     genericChartData: GenericChartData = new GenericChartData();
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
 
     enableExactDataPlugin: boolean = false;
+    dataApi: any;
 
     // chartOptions: string = '';
     chartLegend: boolean = true;
@@ -30,7 +32,7 @@ export class GenericChartModel {
         this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max) 
         this.showLabelPointStyle(chartConfig.plugins.tooltip.callbacks.labelPointStyle.pointStyle, 
                                  chartConfig.plugins.tooltip.callbacks.labelPointStyle.rotation)
-        this.setLabelColor(chartConfig.plugins.tooltip.callbacks.labelColor.backgroundColor, chartConfig.plugins.tooltip.callbacks.labelColor.borderColor);
+        this.setLabelColor(chartConfig.plugins.tooltip.callbacks.labelColor.backgroundColor, chartConfig.plugins.tooltip.callbacks.labelColor.borderColor)
         // this.setLabelColor();
     }
 

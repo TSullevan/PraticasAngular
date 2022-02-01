@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CardModel } from 'src/app/shared/components/card/card.model';
 import { GenericChartModel } from 'src/app/shared/generic-chart/generic-chart.model';
 import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-chart-type.enum';
@@ -6,13 +6,18 @@ import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.c
 import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-point-style-type.enum';
 import { DataResponse } from 'src/app/shared/generic-chart/models/DataResponse.model';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { NavigationEnd } from '@angular/router';
+import { BaseChartDirective } from 'ng2-charts';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
+
+  // @ViewChild(BaseChartDirective) chart: BaseChartDirective
   
   public cards = new Array<CardModel>(new CardModel);
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
@@ -23,13 +28,11 @@ export class HomePageComponent implements OnInit {
   
   public dataApi: DataResponse = new DataResponse();
 
+  
+
   constructor(private httpService: HttpService) {
-
-    this.httpService.get<DataResponse>('data-science').subscribe(data => {
-      this.dataApi = data;
-
-    })
     for (let chart of this.genericCharts) {
+
       chart
         // .setTitle(chart.chartType)
         .setData([
@@ -37,10 +40,8 @@ export class HomePageComponent implements OnInit {
           { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
         ])
         .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
-        
-
       
-        
+      
         // .setScaleOptionsY(0, 120)
         // .isResponsive()
         // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
@@ -49,9 +50,16 @@ export class HomePageComponent implements OnInit {
         // .setLabelColor('red', 'green')
         // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
     }
+
+    
+
   }
 
   ngOnInit(): void {
+    this.httpService.get<DataResponse>('data-science').subscribe((data: any) => {
+      this.dataApi = data;
+      // this.chart.update();
+    })
     
   
     let config = new GenericChartConfig(GenericChartType.BAR)
@@ -113,25 +121,7 @@ export class HomePageComponent implements OnInit {
     
     
 
-    for (let chart of this.genericCharts) {
-      chart
-        // .setTitle(chart.chartType)
-        .setData([
-          { data: [this.dataApi.data], label: this.dataApi.label, backgroundColor: "rgba(53, 60, 189, 0.6)" },
-          { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
-        ])
-        .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
-
-      
-      
-        // .setScaleOptionsY(0, 120)
-        // .isResponsive()
-        // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
-        // .setLabelTextColor('rgb(255, 187, 0)')
-        // .setCallbacksLabel('Evecedo Maraldo')
-        // .setLabelColor('red', 'green')
-        // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
-    }
+    
 
     // this.radarChart = (
     //   this.radarChart.isResponsive(),
@@ -179,6 +169,10 @@ export class HomePageComponent implements OnInit {
 
     this.cards.push(vodkaCard);
 
+  }
+
+  ngOnDestroy(): void {
+      
   }
   
 

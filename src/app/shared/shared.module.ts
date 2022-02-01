@@ -17,6 +17,7 @@ import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-cha
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { GenericChartComponent } from './generic-chart/generic-chart.component';
+import { GenericCanvasComponent } from './components/generic-canvas/generic-canvas.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { GenericChartComponent } from './generic-chart/generic-chart.component';
     DoughnutChartComponent,
     RadarChartComponent,
     PieChartComponent,
-    GenericChartComponent
+    GenericChartComponent,
+    GenericCanvasComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { GenericChartComponent } from './generic-chart/generic-chart.component';
     InputComponent,
     FormComponent,
     BarChartComponent,
-    GenericChartComponent
+    GenericChartComponent,
+    GenericCanvasComponent
   ],
   providers: [HttpClient]
 })
