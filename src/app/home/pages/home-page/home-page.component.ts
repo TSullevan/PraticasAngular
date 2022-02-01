@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
-  // @ViewChild(BaseChartDirective) chart: BaseChartDirective
+  public barChartTest: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR, 'https://api.coingecko.com/api/v3/exchange_rates'));
   
   public cards = new Array<CardModel>(new CardModel);
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
@@ -27,6 +27,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public pieChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.PIE));
   
   public dataApi: DataResponse = new DataResponse();
+
+
 
   
 

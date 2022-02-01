@@ -1,39 +1,40 @@
-import { Chart, ChartConfiguration, ChartData, ChartOptions, ChartTypeRegistry, FontSpec, Plugin } from "chart.js";
+import { ChartConfiguration, ChartData } from "chart.js";
 import { LayoutModel } from "./models/layout-model";
-import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import { ExactDataPluginPositionModel } from "./models/exact-data-plugin-position.model";
 import { GenericChartConfig } from "./generic-chart.config";
-import { GenericChartType } from "./enums/generic-chart-type.enum";
-import { DataResponse } from "./models/DataResponse.model";
-import { NumberValueAccessor } from "@angular/forms";
-import { HttpService } from "../services/http.service";
+import { GenericCanvasModel } from "./components/generic-canvas/generic-canvas.model";
 
 export class GenericChartModel {
+    genericCanvas: GenericCanvasModel = new GenericCanvasModel();
     genericChartData: GenericChartData = new GenericChartData();
     genericChartOptions: GenericChartOptions = new GenericChartOptions();
 
-    enableExactDataPlugin: boolean = false;
     dataApi: any;
 
-    // chartOptions: string = '';
     chartLegend: boolean = true;
     title: string = '';
     chartType: any;
-    // chartPlugins: string = '';
 
     constructor(chartConfig: GenericChartConfig) {
+        this.setFetchRoute(chartConfig.fetchRoute);
         this.setLayout(chartConfig.layout.padding);
         this.chartType = chartConfig.type;
         this.setTitle(chartConfig.title);
         this.isResponsive();
         this.setCallbacksLabel(chartConfig.plugins.tooltip.callbacks.label);
         this.setLabelTextColor(chartConfig.plugins.tooltip.callbacks.labelTextColor);
-        this.showExactDataPlugin(chartConfig.plugins.datalabels);
-        this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max) 
-        this.showLabelPointStyle(chartConfig.plugins.tooltip.callbacks.labelPointStyle.pointStyle, 
-                                 chartConfig.plugins.tooltip.callbacks.labelPointStyle.rotation)
+        this.genericCanvas.showExactDataPlugin(chartConfig.plugins.datalabels);
+        this.setScaleOptionsY(chartConfig.scales.y.min, chartConfig.scales.y.max)
+        this.showLabelPointStyle(chartConfig.plugins.tooltip.callbacks.labelPointStyle.pointStyle,
+            chartConfig.plugins.tooltip.callbacks.labelPointStyle.rotation)
         this.setLabelColor(chartConfig.plugins.tooltip.callbacks.labelColor.backgroundColor, chartConfig.plugins.tooltip.callbacks.labelColor.borderColor)
         // this.setLabelColor();
+
+        this.genericCanvas.setChartOptions(this.genericChartOptions);
+    }
+
+    public setFetchRoute(fetchRoute: string): GenericChartModel {
+        this.genericCanvas.setFetchRoute(fetchRoute);
+        return this;
     }
 
     public setLabelTextColor(cssColor: string): GenericChartModel {
@@ -46,21 +47,7 @@ export class GenericChartModel {
         return this;
     }
 
-    public showExactDataPlugin(exactDataPluginPositionModel: ExactDataPluginPositionModel): GenericChartModel {
-        this.setDataPluginPosition(exactDataPluginPositionModel.anchor, exactDataPluginPositionModel.align);
-        this.enableExactDataPlugin = true;
-        return this;
-    }
-
-    public getChartPlugins(): Array<Plugin> {
-
-        if (this.enableExactDataPlugin) {
-            return [DataLabelsPlugin];
-        }
-        return new Array();
-    }
-
-    public setLabelColor(backgroundColor: string, borderColor:string): GenericChartModel {
+    public setLabelColor(backgroundColor: string, borderColor: string): GenericChartModel {
         this.genericChartOptions.setLabelColor(backgroundColor, borderColor)
         return this;
     }
@@ -91,7 +78,7 @@ export class GenericChartModel {
         return this;
     }
 
-    public  setData(datasets: any): GenericChartModel {
+    public setData(datasets: any): GenericChartModel {
         this.genericChartData.datasets = datasets;
         return this;
     }
@@ -103,12 +90,6 @@ export class GenericChartModel {
 
     private setLayout(padding?: number): GenericChartModel {
         this.genericChartOptions.setPadding(padding);
-        return this;
-    }
-
-    private setDataPluginPosition(anchor: string, align: string): GenericChartModel {
-        this.genericChartOptions.setAnchor(anchor);
-        this.genericChartOptions.setAlign(align);
         return this;
     }
 
@@ -160,30 +141,30 @@ export class GenericChartOptions {
     scales: { x: { min?: number, max?: number }, y: { min?: number, max?: number } } = { x: { min: undefined, max: undefined }, y: { min: undefined, max: undefined } };
 
     public setLabelTextColor(labelTextColor: string): GenericChartOptions {
-        this.plugins.tooltip.callbacks.labelTextColor = function() { return labelTextColor };
+        this.plugins.tooltip.callbacks.labelTextColor = function () { return labelTextColor };
         return this;
     }
 
     public setCallbacksLabel(callbacksLabel: string) {
-        this.plugins.tooltip.callbacks.label = function() {return callbacksLabel};
+        this.plugins.tooltip.callbacks.label = function () { return callbacksLabel };
         return this;
     }
 
     public setLabelColor(backgroundColor: string, borderColor: string): GenericChartOptions {
         this.plugins.tooltip.callbacks.labelColor = function () {
             return {
-            borderColor: borderColor,
-            backgroundColor: backgroundColor
+                borderColor: borderColor,
+                backgroundColor: backgroundColor
             }
         };
         return this;
     }
 
     public setLabelPointStyle(pointStyle: string, rotation: number): GenericChartOptions {
-        this.plugins.tooltip.callbacks.labelPointStyle = function() {
+        this.plugins.tooltip.callbacks.labelPointStyle = function () {
             return {
-              pointStyle: pointStyle,
-              rotation: rotation
+                pointStyle: pointStyle,
+                rotation: rotation
             }
         };
         return this;

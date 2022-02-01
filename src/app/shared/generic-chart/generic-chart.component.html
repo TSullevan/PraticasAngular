@@ -1,16 +1,8 @@
-<div *ngIf="chartData" class="card align-items-center" style="width: auto; ">
+<div class="card align-items-center" style="width: auto; ">
     <div class="card-title">
         <h1>{{model.title | uppercase}}</h1>
     </div> 
     <div class="card-body" style="width: 60rem;">   
-        <div style="display: block;">
-            <canvas baseChart
-                [data]= "chartData"
-                [type]="model.chartType"
-                [options]="chartOptions"
-                [plugins]="chartPlugins"
-                >
-            </canvas>
-        </div>
+        <app-generic-canvas [model]="model.genericCanvas"></app-generic-canvas>
     </div>
 </div>

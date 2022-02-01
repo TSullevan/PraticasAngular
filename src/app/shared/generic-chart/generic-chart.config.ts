@@ -13,6 +13,7 @@ export class GenericChartConfig {
     public static PluginAlignType = PluginAlignType;
     public static PluginAnchorType = PluginAnchorType;
 
+    public fetchRoute: string = '';
     public type: any;
     public layout: LayoutModel = { padding: undefined };
     public title: string = '';
@@ -166,7 +167,8 @@ export class GenericChartConfig {
         return this;
     }
 
-    constructor(type: any) {
+    constructor(type: any, fetchRoute: string = '') {
         this.type = type;
+        this.fetchRoute = fetchRoute;
     }
 }
