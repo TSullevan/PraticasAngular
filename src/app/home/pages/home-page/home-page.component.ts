@@ -5,10 +5,6 @@ import { GenericChartType } from 'src/app/shared/generic-chart/enums/generic-cha
 import { GenericChartConfig } from 'src/app/shared/generic-chart/generic-chart.config';
 import { PointStyleKeyType } from 'src/app/shared/generic-chart/enums/plugin-point-style-type.enum';
 import { DataResponse } from 'src/app/shared/generic-chart/models/DataResponse.model';
-import { HttpService } from 'src/app/shared/services/http.service';
-import { NavigationEnd } from '@angular/router';
-import { BaseChartDirective } from 'ng2-charts';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -17,9 +13,10 @@ import { Subscription } from 'rxjs';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
-  public barChartTest: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR, 'https://api.coingecko.com/api/v3/exchange_rates'));
+  public barChartTest: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.BAR, 'exchange_rates'));
   
   public cards = new Array<CardModel>(new CardModel);
+
   public genericCharts: Array<GenericChartModel> = new Array<GenericChartModel>();
   
   public radarChart: GenericChartModel = new GenericChartModel(new GenericChartConfig(GenericChartType.RADAR));
@@ -29,40 +26,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public dataApi: DataResponse = new DataResponse();
 
 
-
-  
-
-  constructor(private httpService: HttpService) {
-    for (let chart of this.genericCharts) {
-
-      chart
-        // .setTitle(chart.chartType)
-        .setData([
-          { data: [this.dataApi.data], label: this.dataApi.label, backgroundColor: "rgba(53, 60, 189, 0.6)" },
-          { data: [28, 48, 40, 19, 86, 27, 90], label: 'Guiça', backgroundColor: "rgba(186, 186, 52, 0.6)" },
-        ])
-        .setLabel(['2006', '2007', '2008', '2009', '2010', '2011', '2012'])
-      
-      
-        // .setScaleOptionsY(0, 120)
-        // .isResponsive()
-        // .showExactDataPlugin(GenericChartConfig.ExactDataPlugin.END_END)
-        // .setLabelTextColor('rgb(255, 187, 0)')
-        // .setCallbacksLabel('Evecedo Maraldo')
-        // .setLabelColor('red', 'green')
-        // .showLabelPointStyle(PointStyleKeyType.CIRCLE, 0);
-    }
-
-    
-
+  constructor() {
+       
   }
 
   ngOnInit(): void {
-    this.httpService.get<DataResponse>('data-science').subscribe((data: any) => {
-      this.dataApi = data;
-      // this.chart.update();
-    })
-    
   
     let config = new GenericChartConfig(GenericChartType.BAR)
       .setPadding(50)

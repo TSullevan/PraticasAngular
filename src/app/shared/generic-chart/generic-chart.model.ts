@@ -97,10 +97,7 @@ export class GenericChartModel {
         this.genericChartData.datasets = datasets;
         this.genericChartData.labels = labels;
         return this;
-
     }
-
-
 }
 export class GenericChartData {
     labels: Array<string> = new Array<string>();
